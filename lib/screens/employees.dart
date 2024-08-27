@@ -19,16 +19,23 @@ class _EmployeesState extends State<Employees> {
       theme: ThemeData(scaffoldBackgroundColor: Colors.amber),
       debugShowCheckedModeBanner: false,
       title: "Employees",
-      home: const Scaffold(
-        body: SafeArea(
-            child: Column(
-          children: [
-            Expanded(
-              child: Text("Hello app is working"),
-            )
-          ],
-        )),
-      ),
+      home: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: Colors.blue,
+            title: const Text("Employees"),
+          ),
+          body: GridView.count(
+            crossAxisCount: 2,
+            children: List.generate(
+              100, 
+              (index) {
+                return Center(
+                  child: Text("Item $index"),
+                );
+              }
+            ),
+          )),
     );
   }
 }
