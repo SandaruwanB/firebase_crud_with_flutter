@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class EmployeesModel {
   String id;
   String name;
@@ -21,5 +23,9 @@ class EmployeesModel {
       address: map['address'] ?? '',
       age: map['age'] ?? 0,
     );
+  }
+
+  factory EmployeesModel.fromDocumentSnapshot(DocumentSnapshot doc) {
+    return EmployeesModel.fromMap(doc.data() as Map<String, dynamic>);
   }
 }
