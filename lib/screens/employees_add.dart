@@ -13,13 +13,29 @@ class _EmployeeAddState extends State<EmployeesAdd> {
     super.initState();
   }
 
+  void goBack() {
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext contex) {
     return MaterialApp(
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
       title: "Add Employees",
-      home: const Scaffold(
+      home: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text("Add Employee"),
+          leading: IconButton(
+              onPressed: () {
+                goBack();
+              },
+              icon: const Icon(Icons.arrow_back)),
+        ),
+        body: const Center(
+          child: Text("Hello"),
+        ),
       ),
     );
   }
