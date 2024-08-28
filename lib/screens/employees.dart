@@ -14,7 +14,7 @@ class _EmployeesState extends State<Employees> {
     super.initState();
   }
 
-  void navigateToForm(BuildContext context) {
+  void navigateToForm() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (contex) => const EmployeesAdd()));
   }
@@ -40,9 +40,7 @@ class _EmployeesState extends State<Employees> {
           }),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            navigateToForm(contex);
-          },
+          onPressed: navigateToForm,
           backgroundColor: Colors.red,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
