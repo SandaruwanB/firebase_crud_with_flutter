@@ -1,4 +1,7 @@
+import 'package:firebase_test/controllers/employee_controller.dart';
+import 'package:firebase_test/models/employees_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EmployeesAdd extends StatefulWidget {
   const EmployeesAdd({super.key});
@@ -12,6 +15,7 @@ class _EmployeeAddState extends State<EmployeesAdd> {
   final _nameController = TextEditingController();
   final _addressController = TextEditingController();
   final _ageController = TextEditingController();
+  final _nicController = TextEditingController();
 
   @override
   void initState() {
@@ -22,8 +26,19 @@ class _EmployeeAddState extends State<EmployeesAdd> {
     Navigator.pop(context);
   }
 
-  void saveEmployee() {
+  Future<void> saveEmployee() async {
     if (_formKey.currentState!.validate()) {
+      EmployeesModel employee = EmployeesModel(
+        id: _nicController.text,
+        name: _nameController.text,
+        address: _addressController.text,
+        age: int.parse(_ageController.text),
+      );
+
+      await context.read<EmployeeController>().createEmployee(employee);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("Employee Created"))
+      );
     }
   }
 
@@ -57,12 +72,27 @@ class _EmployeeAddState extends State<EmployeesAdd> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 35),
+                      const SizedBox(height: 60),
                       TextFormField(
                         controller: _nameController,
                         keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           labelText: "Name",
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "This field is required";
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 35),
+                      TextFormField(
+                        controller: _nicController,
+                        keyboardType: TextInputType.text,
+                        decoration: const InputDecoration(
+                          labelText: "NIC",
                           border: OutlineInputBorder(),
                         ),
                         validator: (value) {
