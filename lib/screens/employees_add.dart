@@ -60,6 +60,7 @@ class _EmployeeAddState extends State<EmployeesAdd> {
                       const SizedBox(height: 35),
                       TextFormField(
                         controller: _nameController,
+                        keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           labelText: "Name",
                           border: OutlineInputBorder(),
@@ -74,6 +75,7 @@ class _EmployeeAddState extends State<EmployeesAdd> {
                       const SizedBox(height: 35),
                       TextFormField(
                         controller: _addressController,
+                        keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           labelText: "Address",
                           border: OutlineInputBorder(),
@@ -88,6 +90,7 @@ class _EmployeeAddState extends State<EmployeesAdd> {
                       const SizedBox(height: 35),
                       TextFormField(
                         controller: _ageController,
+                        keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
                           labelText: "Age",
                           border: OutlineInputBorder(),
