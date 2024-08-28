@@ -19,20 +19,43 @@ class _EmployeesState extends State<Employees> {
         .push(MaterialPageRoute(builder: (contex) => const EmployeesAdd()));
   }
 
+  onClickGridItem(int id) {
+    return showModalBottomSheet<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return SizedBox(
+            height: 200,
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text("Delete $id"),
+                ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text("Close"),
+                ),
+              ],
+            )),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext contex) {
     return MaterialApp(
-      theme: ThemeData(scaffoldBackgroundColor: Colors.amber),
+      theme: ThemeData(scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
       title: "Employees",
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Colors.blue,
+          scrolledUnderElevation: 6.0,
           title: const Text("Employees"),
+          backgroundColor: Colors.white,
         ),
         body: GridView.builder(
-          itemCount: 1000,
+          itemCount: 100,
           padding: const EdgeInsets.all(4.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -41,13 +64,15 @@ class _EmployeesState extends State<Employees> {
             crossAxisSpacing: 4.0,
           ),
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                color: Colors.grey,
-              ),
-              child: Text("Item $index"),
-            );
+            return InkWell(
+                onTap: () => onClickGridItem(index),
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 240, 237, 237),
+                  ),
+                  child: Text("Item $index"),
+                ));
           },
         ),
         floatingActionButton: FloatingActionButton(
