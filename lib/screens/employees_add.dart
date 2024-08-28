@@ -36,9 +36,7 @@ class _EmployeeAddState extends State<EmployeesAdd> {
       );
 
       await context.read<EmployeeController>().createEmployee(employee);
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Employee Created"))
-      );
+      print("added");
     }
   }
 
