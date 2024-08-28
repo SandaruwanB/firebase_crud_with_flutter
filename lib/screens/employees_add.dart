@@ -8,6 +8,9 @@ class EmployeesAdd extends StatefulWidget {
 }
 
 class _EmployeeAddState extends State<EmployeesAdd> {
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -16,6 +19,8 @@ class _EmployeeAddState extends State<EmployeesAdd> {
   void goBack() {
     Navigator.pop(context);
   }
+
+  void saveEmployee() {}
 
   @override
   Widget build(BuildContext contex) {
@@ -33,9 +38,72 @@ class _EmployeeAddState extends State<EmployeesAdd> {
               },
               icon: const Icon(Icons.arrow_back)),
         ),
-        body: const Center(
-          child: Text("Hello"),
-        ),
+        body: SafeArea(
+            child: Column(
+          children: [
+            Expanded(
+                child: SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                width: double.infinity,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 35),
+                      TextFormField(
+                        controller: _nameController,
+                        decoration: const InputDecoration(
+                          labelText: "Name",
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "This field is required";
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 35),
+                      TextFormField(
+                        controller: _nameController,
+                        decoration: const InputDecoration(
+                          labelText: "Name",
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "This field is required";
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 50),
+                      ElevatedButton(
+                        onPressed: () {
+                          saveEmployee();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                          backgroundColor: Colors.blue,
+                          padding: const EdgeInsets.symmetric(horizontal: 100.0),
+                        ),
+                        child: const Text("save", style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ))
+          ],
+        )),
       ),
     );
   }
