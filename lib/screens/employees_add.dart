@@ -10,6 +10,8 @@ class EmployeesAdd extends StatefulWidget {
 class _EmployeeAddState extends State<EmployeesAdd> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _ageController = TextEditingController();
 
   @override
   void initState() {
@@ -20,7 +22,10 @@ class _EmployeeAddState extends State<EmployeesAdd> {
     Navigator.pop(context);
   }
 
-  void saveEmployee() {}
+  void saveEmployee() {
+    if (_formKey.currentState!.validate()) {
+    }
+  }
 
   @override
   Widget build(BuildContext contex) {
@@ -68,9 +73,23 @@ class _EmployeeAddState extends State<EmployeesAdd> {
                       ),
                       const SizedBox(height: 35),
                       TextFormField(
-                        controller: _nameController,
+                        controller: _addressController,
                         decoration: const InputDecoration(
-                          labelText: "Name",
+                          labelText: "Address",
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "This field is required";
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 35),
+                      TextFormField(
+                        controller: _ageController,
+                        decoration: const InputDecoration(
+                          labelText: "Age",
                           border: OutlineInputBorder(),
                         ),
                         validator: (value) {
@@ -90,12 +109,16 @@ class _EmployeeAddState extends State<EmployeesAdd> {
                             borderRadius: BorderRadius.circular(2),
                           ),
                           backgroundColor: Colors.blue,
-                          padding: const EdgeInsets.symmetric(horizontal: 100.0),
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 100.0),
                         ),
-                        child: const Text("save", style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                        ),),
+                        child: const Text(
+                          "save",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
                       ),
                     ],
                   ),
