@@ -35,7 +35,16 @@ class _EmployeesState extends State<Employees> {
                 );
               }
             ),
-          )),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: ()=>{},
+            backgroundColor: Colors.red,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30)
+            ),
+            child: const Icon(Icons.add, color: Colors.white, size: 30),
+          ),
+        ),
     );
   }
 }
