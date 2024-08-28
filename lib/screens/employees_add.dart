@@ -19,7 +19,8 @@ class _EmployeeAddState extends State<EmployeesAdd> {
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
       title: "Add Employees",
-      home: const Scaffold(),
+      home: const Scaffold(
+      ),
     );
   }
 }
